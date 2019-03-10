@@ -11,7 +11,6 @@ module.exports = class SNS {
             Subject: subject,
             TargetArn: arn || process.env.SNSARN,
         }
-        console.log('Publicou SNS');
         return await sns.publish(params).promise();
     }
 } 
