@@ -5,7 +5,7 @@ AWS.config.update({ region: 'us-east-1' });
 module.exports = class Dynamo {
 
     constructor(table) {
-        this.prefix_table = process.env.prefix_table || '';
+        this.prefix_table = process.env.PREFIX_TABLE || '';
         this.table = this.prefix_table + table;
         this.contador_table = this.prefix_table + 'contador'
     }
