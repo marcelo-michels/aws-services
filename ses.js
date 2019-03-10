@@ -16,7 +16,6 @@ module.exports = class SES {
             },
             Source: from,
         };
-
         let ses = new AWS.SES();
         return await ses.sendEmail(params).promise();
     }
