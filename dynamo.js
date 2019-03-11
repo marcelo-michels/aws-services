@@ -77,4 +77,33 @@ module.exports = class Dynamo {
         return await dynamodb.describeTable(params).promise();
     }
 
-}
+    async salvar(item) {
+        if (!item.id)
+            item.id = await this.getContador();
+
+        await this.put({ Item: item });
+        return item;
+    }
+
+    async buscarTodos() {
+        let result = await this.scan();
+        return result.Items;
+    }
+
+    async buscarById(id) {
+        let result = await this.get({ Key: { id: id } });
+        return (result && result.Item ? result.Item : undefined);
+    }
+
+    async updateCampo(id, campo, valor) {
+        let params = {
+            Key: { 'id': id },
+            UpdateExpression: `set #${campo} = :${campo}`,
+        };
+        params.ExpressionAttributeValues = {};
+        params.ExpressionAttributeNames = {};
+        params.ExpressionAttributeNames[`#${campo}`] = campo;
+        params.ExpressionAttributeValues[`:${campo}`] = valor;
+        await this.update(params);
+    }
+} 
