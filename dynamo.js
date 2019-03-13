@@ -90,8 +90,11 @@ module.exports = class Dynamo {
         return result.Items;
     }
 
-    async buscarById(id) {
-        let result = await this.get({ Key: { id: id } });
+    async buscarById(id, campos) {
+        let result = await this.get({
+            Key: { id: id },
+            ProjectionExpression: campos
+        });
         return (result && result.Item ? result.Item : undefined);
     }
 
