@@ -2,7 +2,6 @@
 var AWS = require('aws-sdk');
 const uuidv4 = require('uuid/v4');
 
-AWS.config.update({ region: 'us-east-1' });
 
 module.exports = class S3 {
 
