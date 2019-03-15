@@ -2,7 +2,6 @@
 var AWS = require('aws-sdk');
 const uuidv4 = require('uuid/v4');
 
-
 module.exports = class S3 {
 
     static async uploadBase64(bucket, base64, contentType) {
