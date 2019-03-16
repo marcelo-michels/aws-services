@@ -10,7 +10,11 @@ module.exports = class Dynamo {
     }
 
     getDC() {
-        return new AWS.DynamoDB.DocumentClient();
+        return new AWS.DynamoDB.DocumentClient({ service: this.getDynamo() });
+    }
+
+    getDynamo() {
+        return new AWS.DynamoDB({ region: process.env.AWS_REGION });
     }
 
     prepareParams(params) {
@@ -66,14 +70,16 @@ module.exports = class Dynamo {
             BillingMode: "PAY_PER_REQUEST",
         };
 
-        var dynamodb = new AWS.DynamoDB();
-        return await dynamodb.createTable(params).promise();
+        return await this.getDynamo().createTable(params).promise();
     }
 
     async describeTable() {
         var params = { TableName: this.table };
-        var dynamodb = new AWS.DynamoDB();
-        return await dynamodb.describeTable(params).promise();
+        return await this.getDynamo().describeTable(params).promise();
+    }
+
+    async listTables() {
+        return await this.getDynamo().listTables({}).promise();
     }
 
     async salvar(item) {
