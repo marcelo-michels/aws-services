@@ -7,14 +7,18 @@ module.exports = class SES {
         var params = {
             Destination: { ToAddresses: [to] },
             Message: {
-                Body: {
-                    Html: { Charset: "UTF-8", Data: htmlMsg },
-                    Text: { Charset: "UTF-8", Data: textMsg }
-                },
+                Body: {},
                 Subject: { Charset: "UTF-8", Data: subject }
             },
             Source: from,
         };
+
+        if (textMsg)
+            params.Message.Body.Text = { Charset: "UTF-8", Data: textMsg };
+
+        if (htmlMsg)
+            params.Message.Body.Html = { Charset: "UTF-8", Data: htmlMsg };
+
         let ses = new AWS.SES();
         return await ses.sendEmail(params).promise();
     }
