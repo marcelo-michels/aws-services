@@ -82,6 +82,16 @@ module.exports = class Dynamo {
         return await this.getDynamo().listTables({}).promise();
     }
 
+    removerCamposVazios(obj) {
+        for (var propName in obj) {
+            if (obj[propName] === null || obj[propName] === undefined || obj[propName] === '') {
+                delete obj[propName];
+            } else if (typeof obj[propName] === 'object') {
+                this.removerCamposVazios(obj[propName]);
+            }
+        }
+    }
+
     async salvar(item) {
         if (item.id) {
             let original = await this.buscarById(item.id);
@@ -89,7 +99,7 @@ module.exports = class Dynamo {
         } else {
             item.id = await this.getContador();
         }
-
+        this.removerCamposVazios(item);
         await this.put({ Item: item });
         return item;
     }
