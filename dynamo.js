@@ -95,7 +95,8 @@ module.exports = class Dynamo {
     async salvar(item) {
         if (item.id) {
             let original = await this.buscarById(item.id);
-            item = Object.assign(original, item);
+            if (original)
+                item = Object.assign(original, item);
         } else {
             item.id = await this.getContador();
         }
