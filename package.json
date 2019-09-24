@@ -1,0 +1,25 @@
+{
+  "name": "aws-services",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dynamo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcelo-michels/aws-services.git"
+  },
+  "keywords": [
+    "aws"
+  ],
+  "author": "marcelo-michels",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcelo-michels/aws-services/issues"
+  },
+  "homepage": "https://github.com/marcelo-michels/aws-services#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
+}
