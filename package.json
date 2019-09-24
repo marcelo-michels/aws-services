@@ -1,6 +1,6 @@
 {
   "name": "aws-services",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "dynamo.js",
   "scripts": {
