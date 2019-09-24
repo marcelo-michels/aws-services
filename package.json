@@ -1,5 +1,5 @@
 {
-  "name": "aws-services",
+  "name": "@marcelo-michels/aws-services",
   "version": "1.0.2",
   "description": "",
   "main": "dynamo.js",
